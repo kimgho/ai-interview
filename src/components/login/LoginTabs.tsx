@@ -23,7 +23,7 @@ const LoginTabs = () => {
                     <TabsTrigger
                         key={tab.value}
                         value={tab.value}
-                        className='className="rounded-md cursor-pointer data-[state=active]:bg-white data-[state=active]:shadow-none"'
+                        className="rounded-md cursor-pointer data-[state=active]:bg-white data-[state=active]:shadow-none"
                     >
                         {tab.label}
                     </TabsTrigger>
