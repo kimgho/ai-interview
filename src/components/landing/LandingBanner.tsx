@@ -10,7 +10,7 @@ const LandingBanner = () => {
                             매일 매일 꾸준한 기술 면접 준비
                         </h2>
                         <p className="max-w-[900px] mx-auto text-emerald-50 md:text-xl">
-                            AI와 기술 면접을 해보세오
+                            AI와 기술 면접을 해보세요
                         </p>
                     </div>
                     <div className="flex flex-col gap-2 min-[400px]:flex-row">

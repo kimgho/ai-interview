@@ -37,7 +37,7 @@ const LandingGuide = () => {
                             <span className="text-xl font-bold">3</span>
                         </div>
                         <h3 className="text-xl font-bold">피드백 받기</h3>
-                        <p className="text-gray-500">만약 평가를 받고 싶다면 답변을 그만하고 점수를 평가받으세요.</p>
+                        <p className="text-gray-500">답변에 대한 평가를 받으려면, 답변을 중단하고 평가를 요청하세요.</p>
                     </div>
                 </div>
                 <div className="flex justify-center">

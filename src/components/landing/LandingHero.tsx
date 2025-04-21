@@ -19,7 +19,7 @@ const LandingHero = () => {
                                 <a href="/login?tab=register">무료로 시작하기</a>
                             </Button>
                             <Button asChild variant="outline" size="lg">
-                                <a href="#how-it-works">사용 방법 알아보기</a>
+                                <a href="#how-it-works" aria-label="사용 방법 알아보기">사용 방법 알아보기</a>
                             </Button>
                         </div>
                         <div className="flex items-center justify-center flex-wrap space-x-4 text-sm">
