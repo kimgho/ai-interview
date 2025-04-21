@@ -1,8 +1,9 @@
-import LoginPage from "./pages/LoginPage"
+
+import Router from "./router";
 
 const App = () => {
   return (
-    <LoginPage />
+    <Router />
   )
 }
 export default App;
