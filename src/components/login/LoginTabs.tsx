@@ -9,11 +9,11 @@ const tabLabel = [
 ]
 
 const LoginTabs = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, setActiveTab] = useState<'login' | 'register'>("login");
+    const [activeTab, setActiveTab] = useState<'login' | 'register'>("login");
 
     return (
         <Tabs
+            value={activeTab}
             defaultValue="login"
             className="w-full"
             onValueChange={(value) => setActiveTab(value as 'login' | 'register')}
