@@ -1,7 +1,10 @@
 import { CheckCircle2 } from "lucide-react"
 import { Button } from "../ui/button"
+import { useNavigate } from "react-router-dom"
 
 const LandingHero = () => {
+    const navigate = useNavigate();
+
     return (
         <section className="py-12 md:py-24 lg:py-32 xl:py-36">
             <div className="container mx-auto px-4 md:px-6">
@@ -15,11 +18,11 @@ const LandingHero = () => {
                             </h1>
                         </div>
                         <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                            <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                                <a href="/login?tab=register">무료로 시작하기</a>
+                            <Button size="lg" onClick={() => navigate('/login')} className="bg-emerald-600 hover:bg-emerald-700">
+                                무료로 시작하기
                             </Button>
-                            <Button asChild variant="outline" size="lg">
-                                <a href="#how-it-works" aria-label="사용 방법 알아보기">사용 방법 알아보기</a>
+                            <Button variant="outline" size="lg" onClick={() => navigate('#how-it-works')} >
+                                사용 방법 알아보기
                             </Button>
                         </div>
                         <div className="flex items-center justify-center flex-wrap space-x-4 text-sm">

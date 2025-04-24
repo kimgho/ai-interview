@@ -1,10 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 
 const LandingHeader = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     const handleNavigation = (path: string) => {
+        if (currentPath === path) return;
         navigate(path);
     };
 
@@ -25,6 +28,7 @@ const LandingHeader = () => {
                     >
                         로그인
                     </Button>
+                    {/* //TODO 로그인 추가 후 비교해서 라우팅 하도록 */}
                     <Button
                         onClick={() => handleNavigation('/login?tab=register')}
                         className="bg-emerald-600 cursor-pointer hover:bg-emerald-700 "
