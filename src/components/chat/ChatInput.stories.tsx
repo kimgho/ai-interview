@@ -12,3 +12,9 @@ export const Default: Story = {
     args: {
     },
 };
+
+export const Loading: Story = {
+    args: {
+        isLoading: true
+    }
+}
