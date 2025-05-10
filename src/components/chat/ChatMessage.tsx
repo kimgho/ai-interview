@@ -9,8 +9,7 @@ interface ChatMessageProps {
     isLoading?: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function ChatMessage({ content, sender, timestamp, isLoading = false }: ChatMessageProps) {
+export function ChatMessage({ content, sender, timestamp }: ChatMessageProps) {
     const isAI = sender === "AI"
 
     return (
