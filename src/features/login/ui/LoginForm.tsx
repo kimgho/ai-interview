@@ -1,7 +1,7 @@
 import InputField from "../../../entities/auth/ui/InputField"
 import LoginButton from "@/entities/auth/ui/LoginButton"
 
-// feature/login/ui
+
 const LoginForm = () => {
     return (
         <div className="space-y-4">

@@ -8,9 +8,7 @@ interface ChatPopoverProps {
     onEdit?: () => void;
     onDelete?: () => void;
 }
-//사이드바 종속
-// feature/chat/ui?
-// history를 entities로 빼면 /entities/history/ui
+
 const ChatPopover = ({ isVisible, onTriggerClick, onDelete, onEdit }: ChatPopoverProps) => {
     return (
         <Popover>

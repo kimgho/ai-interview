@@ -7,7 +7,7 @@ interface ChatMessageWrapperProps {
     isLoading: boolean
 }
 
-// entities/message/ui
+
 const ChatMessageWrapper = ({ messages, isLoading }: ChatMessageWrapperProps) => {
     return (
         <div className="flex flex-col w-full p-4 space-y-4 overflow-y-auto">

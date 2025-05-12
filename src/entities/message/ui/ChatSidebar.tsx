@@ -19,8 +19,7 @@ const mockChatHistoryData = [
     { id: 7, title: "엄청 긴 채팅방 제목입니다람쥐람쥐람쥐람쥐람쥐람쥐람쥐", timestamp: "4월 28일" },
 ]
 
-// feature/chat/ui?
-// history를 entities로 빼면 /entities/history/ui
+
 const ChatSidebar = () => {
     const [activeChat, setActiveChat] = useState<number | null>(1)
     return (

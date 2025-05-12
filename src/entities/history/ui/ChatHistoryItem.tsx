@@ -9,9 +9,6 @@ interface ChatHistoryItemProps {
     onClick?: () => void;
 }
 
-// sidebar 종속
-// feature/chat/ui?
-// history를 entities로 빼면 /entities/history/ui
 const ChatHistoryItem = ({ title, timestamp, isActive = false, onClick }: ChatHistoryItemProps) => {
     const [isHovered, setIsHovered] = useState(false);
 

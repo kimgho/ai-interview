@@ -7,7 +7,7 @@ const tabLabel = [
     { value: "login", label: "로그인" },
     { value: "register", label: "회원가입" },
 ]
-// entities/auth/ui
+
 const LoginTabs = () => {
     const [activeTab, setActiveTab] = useState<'login' | 'register'>("login");
 

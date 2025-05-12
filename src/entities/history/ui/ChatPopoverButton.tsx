@@ -4,9 +4,7 @@ interface PopoverButtonProps {
     onClick?: () => void;
     variant?: "default" | "danger";
 }
-//사이드바 종속
-// feature/chat/ui?
-// history를 entities로 빼면 /entities/history/ui
+
 const ChatPopoverButton = ({ label, icon, onClick, variant = "default" }: PopoverButtonProps) => {
     const variantClasses = {
         default: "",

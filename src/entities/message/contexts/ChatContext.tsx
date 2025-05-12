@@ -1,4 +1,4 @@
-import { generateMockAIResponse } from "@/features/chat/__mock__/generateMockAIResponse" // 채팅 연결하면 죽이기
+import { generateMockAIResponse } from "@/features/chat/__mock__/generateMockAIResponse" //TODO 채팅 연결하면 제거
 import type { ChatMessageType } from "@/entities/message/types/ChatMessageProps"
 import { createContext, useState, useEffect, useRef, type ReactNode } from "react"
 
@@ -8,7 +8,7 @@ interface ChatContextType {
     sendMessage: (content: string) => void
     messagesEndRef: React.RefObject<HTMLDivElement | null>
 }
-//entities 폴더 이름 붙여쓰기
+
 export const ChatContext = createContext<ChatContextType | undefined>(undefined)
 
 

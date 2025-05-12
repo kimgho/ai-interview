@@ -8,7 +8,7 @@ interface ChatMessageProps {
     timestamp?: string
     isLoading?: boolean
 }
-// entities/message/ui
+
 export function ChatMessage({ content, sender, timestamp }: ChatMessageProps) {
     const isAI = sender === "AI"
 

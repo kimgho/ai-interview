@@ -8,8 +8,6 @@ interface InputFieldProps {
     placeholder?: string;
     rightElement?: React.ReactNode;
 }
-// 로그인 회원가입 폼 에서 공통으로 사용
-// entities/auth/ui
 const InputField = ({ id, label, type = "text", placeholder = "", rightElement = null }: InputFieldProps) => {
     return (
         <div className="space-y-2">

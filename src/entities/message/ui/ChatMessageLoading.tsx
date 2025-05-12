@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
-//AI가 서버에서 응답 가져올때동안 보여줄 UI느낌임
-// entities/message/ui
+
 export function ChatMessageLoading() {
     const [dots, setDots] = useState(1)
 

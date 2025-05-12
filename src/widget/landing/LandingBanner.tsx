@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/shared/ui/button"
 
-// landing 컴포넌트는 싹 다 Widget으로 
-// widget/landing?
+
 const LandingBanner = () => {
     const navigate = useNavigate();
 

@@ -1,6 +1,6 @@
 import InputField from "@/entities/auth/ui/InputField"
 import LoginButton from "@/entities/auth/ui/LoginButton"
-// feature/Register/ui
+
 const RegisterForm = () => {
     return (
         <div className="space-y-4">

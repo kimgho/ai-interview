@@ -1,4 +1,3 @@
-// entities/auth/ui
 const LoginHeader = () => {
     return (
         <>

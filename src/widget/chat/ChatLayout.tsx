@@ -4,7 +4,7 @@ import ChatTextWrapper from "@/entities/message/ui/ChatMessageWrapper"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/shared/ui/sidebar"
 import { useChat } from "@/entities/message/hooks/useChat"
 
-//widget
+
 const ChatLayout = () => {
     const { messages, isLoading, sendMessage, messagesEndRef } = useChat()
 

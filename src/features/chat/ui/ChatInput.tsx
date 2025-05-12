@@ -8,9 +8,7 @@ interface ChatInputProps {
     isLoading: boolean;
 }
 
-//채팅 입력창임
-// feature/chat/ui
-// entities/message 관련 로직을 가져다 사용
+
 const ChatInput = ({ isLoading = false, onSendMessage }: ChatInputProps) => {
     const [message, setMessage] = useState("")
 
