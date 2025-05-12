@@ -1,9 +1,9 @@
-import LandingHeader from "@/components/landing/LandingHeader"
-import LandingBanner from "@/components/landing/LandingBanner"
-import LandingHero from "@/components/landing/LandingHero"
-import LandingCard from "@/components/landing/LandingCard"
-import LandingFooter from "@/components/landing/LandingFooter"
-import LandingGuide from "@/components/landing/LandingGuide"
+import LandingHeader from "@/widget/landing/LandingHeader"
+import LandingBanner from "@/widget/landing/LandingBanner"
+import LandingHero from "@/widget/landing/LandingHero"
+import LandingCard from "@/widget/landing/LandingCard"
+import LandingFooter from "@/widget/landing/LandingFooter"
+import LandingGuide from "@/widget/landing/LandingGuide"
 
 export default function LandingPage() {
     return (

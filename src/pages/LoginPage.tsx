@@ -1,6 +1,6 @@
-import LoginContainer from "@/components/login/LoginContainer"
-import LoginHeader from "@/components/login/LoginHeader"
-import LoginTabs from "@/components/login/LoginTabs"
+import LoginContainer from "@/entities/auth/ui/LoginContainer"
+import LoginHeader from "@/entities/auth/ui/LoginHeader"
+import LoginTabs from "@/widget/auth/LoginTabs"
 
 const LoginPage = () => {
     return (

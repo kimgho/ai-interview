@@ -1,0 +1,4 @@
+shared는 다른 프로젝트에 옮겨도 상관없음 -> shared/ui
+환경변수/고정된 상수값은 -> 프로젝트에 국한됨(다른 프로젝트 교차 불가)->app
+slice가 있는 애들은 feature, entities만
+나머지 app,shared,widget(애매)는 바로 segment?

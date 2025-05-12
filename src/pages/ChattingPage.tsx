@@ -1,5 +1,5 @@
-import ChatLayout from "@/components/chat/ChatLayout"
-import { ChatProvider } from "@/contexts/ChatContext"
+import ChatLayout from "@/widget/chat/ChatLayout"
+import { ChatProvider } from "@/entities/message/contexts/ChatContext"
 
 const ChattingPage = () => {
     return (
