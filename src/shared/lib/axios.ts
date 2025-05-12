@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios"
+import ApiErrorHandler from "./ApiErrorHandler";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
@@ -18,12 +19,10 @@ const onResponse = (res: AxiosResponse): AxiosResponse => {
     return res;
 }
 
-const onError = (error: AxiosError | Error): Promise<AxiosError> => {
-    if (axios.isAxiosError(error)) {
-        const { method, url } = error.config as InternalAxiosRequestConfig
-        console.log(`${method?.toUpperCase()} ${url}`)
-    }
-    return Promise.reject(error)
+const onError = (error: AxiosError | Error): Promise<AxiosError | Error> => {
+    ApiErrorHandler.handleGlobalError(error);
+
+    return Promise.reject(error);
 }
 
 axiosInstance.interceptors.request.use(onRequest);
