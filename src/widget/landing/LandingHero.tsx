@@ -1,10 +1,11 @@
 import { CheckCircle2 } from "lucide-react"
 import { Button } from "@/shared/ui/button"
 import { useNavigate } from "react-router-dom"
+import useAuthStore from "@/entities/auth/store/useAuthStore";
 
 const LandingHero = () => {
     const navigate = useNavigate();
-
+    const { isLoggedIn } = useAuthStore();
     return (
         <section className="py-12 md:py-24 lg:py-32 xl:py-36">
             <div className="container mx-auto px-4 md:px-6">
@@ -18,7 +19,7 @@ const LandingHero = () => {
                             </h1>
                         </div>
                         <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                            <Button size="lg" onClick={() => navigate('/login')} className="bg-emerald-600 hover:bg-emerald-700">
+                            <Button size="lg" onClick={() => navigate(isLoggedIn ? '/chat' : '/login')} className="bg-emerald-600 hover:bg-emerald-700">
                                 무료로 시작하기
                             </Button>
                             <Button variant="outline" size="lg" onClick={() => navigate('#how-it-works')} >

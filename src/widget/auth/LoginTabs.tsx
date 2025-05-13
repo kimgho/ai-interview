@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
 import LoginForm from '@/features/login/ui/LoginForm';
-import RegisterForm from '@/features/register/ui/RegisterForm';
+import RegisterForm from '@/features/signup/ui/RegisterForm';
 
 const tabLabel = [
     { value: "login", label: "로그인" },

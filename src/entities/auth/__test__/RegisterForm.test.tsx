@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
-import RegisterForm from "@/features/register/ui/RegisterForm";
+import RegisterForm from "@/features/signup/ui/RegisterForm";
 
 describe('RegisterForm test', () => {
     test("should render correctly with register form", () => {

@@ -11,17 +11,27 @@ type Story = StoryObj<typeof LoginButton>;
 export const Login: Story = {
     args: {
         children: '로그인',
-        onClick() {
-            alert("로그인 버튼 누름")
-        },
+        disabled: false
     },
 };
 
-export const Register: Story = {
+export const Signup: Story = {
     args: {
         children: '회원가입',
-        onClick() {
-            alert("회원가입 버튼 누름")
-        },
+        disabled: false
     },
 };
+
+export const loadingLogin: Story = {
+    args: {
+        children: '로그인중입니다..',
+        disabled: true
+    }
+}
+
+export const loadingSignup: Story = {
+    args: {
+        children: "회원가입중입니다..",
+        disabled: true
+    }
+}
