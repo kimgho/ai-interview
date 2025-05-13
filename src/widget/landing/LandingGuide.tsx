@@ -1,6 +1,10 @@
+import useAuthStore from "@/entities/auth/store/useAuthStore";
 import { Button } from "@/shared/ui/button"
+import { useNavigate } from "react-router"
 
 const LandingGuide = () => {
+    const navigate = useNavigate();
+    const { isLoggedIn } = useAuthStore();
     return (
         <section id="how-it-works" className="py-12 md:py-24 lg:py-32">
             <div className="container mx-auto px-4 md:px-6">
@@ -41,8 +45,8 @@ const LandingGuide = () => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                        <a href="/login?tab=register">지금 시작하기</a>
+                    <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700" onClick={() => navigate(isLoggedIn ? '/chat' : '/login')}>
+                        지금 시작하기
                     </Button>
                 </div>
             </div>

@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/shared/ui/button"
+import useAuthStore from "@/entities/auth/store/useAuthStore";
 
 
 const LandingBanner = () => {
     const navigate = useNavigate();
-
-    const handleNavigate = () => {
-        navigate('/login');
-    }
-
+    const { isLoggedIn } = useAuthStore();
     return (
         <section className="bg-emerald-600 py-12 md:py-24 lg:py-32">
             <div className="container mx-auto px-4 md:px-6">
@@ -22,7 +19,7 @@ const LandingBanner = () => {
                         </p>
                     </div>
                     <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                        <Button size="lg" onClick={handleNavigate} className="bg-white text-emerald-600 hover:bg-emerald-50">
+                        <Button size="lg" onClick={() => navigate(isLoggedIn ? '/chat' : '/login')} className="bg-white text-emerald-600 hover:bg-emerald-50">
                             무료로 시작하기
                         </Button>
                     </div>
