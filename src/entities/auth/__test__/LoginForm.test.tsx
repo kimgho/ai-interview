@@ -1,10 +1,11 @@
 import { screen, render } from "@testing-library/react";
 import { describe, test, expect } from "vitest";
 import LoginForm from "@/features/login/ui/LoginForm";
+import { MemoryRouter } from "react-router";
 
 describe('LoginForm Test', () => {
     test("should render correctly with login form", () => {
-        render(<LoginForm />)
+        render(<MemoryRouter><LoginForm /></MemoryRouter>)
 
         const buttonElement = screen.getByText('로그인');
 
