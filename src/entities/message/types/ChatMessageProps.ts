@@ -1,6 +1,6 @@
 export type ChatMessageType = {
     id: string
     content: string
-    sender: "AI" | "USER"
+    sender: "LLM" | "USER"
     timestamp: string
 }

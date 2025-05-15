@@ -12,7 +12,7 @@ export const Default: Story = {
     render: () => (
         <div className='flex flex-col max-w-md'>
             <div>
-                <ChatMessage sender='AI' timestamp='02:02' content='AI입니다람쥐' />
+                <ChatMessage sender='LLM' timestamp='02:02' content='AI입니다람쥐' />
             </div>
             <div>
                 <ChatMessage sender='USER' timestamp='02:02' content='사용자입니다람쥐' />
@@ -23,7 +23,7 @@ export const Default: Story = {
 
 export const AIMessage: Story = {
     args: {
-        sender: "AI",
+        sender: "LLM",
         timestamp: "02:02",
         content: "AI답변입니다람쥐"
     },
@@ -39,7 +39,7 @@ export const UserMessage: Story = {
 
 export const longMessage: Story = {
     args: {
-        sender: "AI",
+        sender: "LLM",
         timestamp: "02:10",
         content:
             "이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?이건 어디까지 길어지는거에요?",
