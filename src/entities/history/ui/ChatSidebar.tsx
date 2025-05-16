@@ -8,80 +8,40 @@ import {
     SidebarMenu,
 } from "@/shared/ui/sidebar"
 import ChatHistoryItem from "./ChatHistoryItem"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Button } from "@/shared/ui/button"
 import { ChevronDown, ChevronRight, PlusCircle } from 'lucide-react'
-import { getInterviews, postInterviews } from "@/features/chat/service/interview"
-import { formatTime, groupSessionsByDate } from "../utils/dateTransformer"
+import { formatTime } from "../utils/dateTransformer"
 import { useNavigate } from "react-router"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/ui/collapsible"
+import { useChatSidebar } from "../model/useChatSidebar"
 
 const ChatSidebar = () => {
-    const [activeSession, setActiveSession] = useState<number | null>(1)
-    const [groupedHistory, setGroupedHistory] = useState<ReturnType<typeof groupSessionsByDate>>([]);
-    const [isHistoryLoading, setIsHistoryLoading] = useState(false);
-    const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
     const navigate = useNavigate();
-
-    const getInterviewHistory = async () => {
-        setIsHistoryLoading(true);
-        try {
-            const interviews = await getInterviews();
-
-            const sortedInterviews = [...interviews].sort((a, b) => {
-                const dateA = new Date(a.startedAt.replace(' ', 'T'));
-                const dateB = new Date(b.startedAt.replace(' ', 'T'));
-                return dateB.getTime() - dateA.getTime();
-            });
-
-            const grouped = groupSessionsByDate(sortedInterviews);
-            setGroupedHistory(grouped);
-
-            const newExpandedState = { ...expandedGroups };
-            grouped.forEach(group => {
-                if (newExpandedState[group.dateHeader] === undefined) {
-                    newExpandedState[group.dateHeader] = true;
-                }
-            });
-            setExpandedGroups(newExpandedState);
-        } catch (error) {
-            console.error("인터뷰 세션 가져오기 실패", error);
-        } finally {
-            setIsHistoryLoading(false);
-        }
-    };
+    const {
+        activeSession,
+        groupedHistory,
+        isHistoryLoading,
+        expandedGroups,
+        getInterviewHistory,
+        handleCreateNewSession,
+        handleSelectInterview,
+        toggleGroup,
+    } = useChatSidebar();
 
     useEffect(() => {
         getInterviewHistory();
-    }, []);
-
-    const handleCreateNewSession = async () => {
-        try {
-            const newSession = await postInterviews();
-            navigate(`/chat/${newSession.id}`);
-            await getInterviewHistory();
-        } catch (error) {
-            console.error("새 인터뷰 세션 생성 실패", error);
-        }
-    }
-
-    const handleSelectInterview = (sessionId: number) => {
-        setActiveSession(sessionId);
-        navigate(`/chat/${sessionId}`);
-    };
-
-    const toggleGroup = (dateHeader: string) => {
-        setExpandedGroups(prev => ({
-            ...prev,
-            [dateHeader]: !prev[dateHeader]
-        }));
-    };
+    }, [getInterviewHistory]);
 
     return (
         <Sidebar>
             <SidebarContent>
                 <SidebarHeader className="p-2">
-                    <Button variant="outline" className="w-full justify-start gap-2 cursor-pointer" onClick={handleCreateNewSession}>
+                    <Button
+                        variant="outline"
+                        className="w-full justify-start gap-2 cursor-pointer"
+                        onClick={() => handleCreateNewSession(navigate)}
+                    >
                         <PlusCircle size={16} />
                         <span>새 인터뷰 세션</span>
                     </Button>
@@ -123,7 +83,7 @@ const ChatSidebar = () => {
                                                     title={interview.displayTitle}
                                                     timestamp={formatTime(interview.startedAt)}
                                                     isActive={activeSession === interview.id}
-                                                    onClick={() => handleSelectInterview(interview.id)}
+                                                    onClick={() => handleSelectInterview(interview.id, navigate)}
                                                 />
                                             ))}
                                         </CollapsibleContent>
