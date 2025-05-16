@@ -32,7 +32,7 @@ export const useChatStream = ({ sessionId, message = "시작", token }: ChatStre
         }
 
         setStreamMessage("");
-        const url = `${baseURL}/interviews/${sessionId}/messages/stream?message=${encodeURIComponent(message)}&token=${token}`;
+        const url = `${baseURL}/interviews/${sessionId}/messages/stream?message=${encodeURIComponent(message)}&token=${encodeURIComponent(token)}`;
 
         const eventSource = new EventSource(url);
 
