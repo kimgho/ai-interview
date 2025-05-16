@@ -1,13 +1,18 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios"
 import ApiErrorHandler from "./ApiErrorHandler";
+import useAuthStore from "@/entities/auth/store/useAuthStore";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
 })
 
 const onRequest = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
-    const { method, url } = config
-    console.log(`${method?.toUpperCase()} ${url}`);
+    const accessToken = useAuthStore.getState().accessToken;
+
+    if (accessToken) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${accessToken}`;
+    }
 
     return config;
 }
