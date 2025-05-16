@@ -1,5 +1,5 @@
 import ChatInput from "@/features/chat/ui/ChatInput"
-import ChatSidebar from "@/entities/message/ui/ChatSidebar"
+import ChatSidebar from "@/entities/history/ui/ChatSidebar"
 import ChatTextWrapper from "@/entities/message/ui/ChatMessageWrapper"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/shared/ui/sidebar"
 import { useChat } from "@/entities/message/hooks/useChat"
