@@ -5,16 +5,19 @@ interface GroupedSession {
     sessions: (InterviewsResponseBody & { displayTitle: string })[];
 }
 
+export const createDate = (str: string): Date | null => {
+    try {
+        const isoLikeString = str.replace(' ', 'T');
+        const date = new Date(isoLikeString);
+        return isNaN(date.getTime()) ? null : date;
+    } catch {
+        return null;
+    }
+};
+
 export const getDateHeader = (dateString: string): string => {
-    const createDate = (str: string): Date | null => {
-        try {
-            const isoLikeString = str.replace(' ', 'T');
-            const date = new Date(isoLikeString);
-            return isNaN(date.getTime()) ? null : date;
-        } catch {
-            return null;
-        }
-    };
+    const date = createDate(dateString);
+    if (!date) return "알 수 없는 날짜";
 
     const formatToKoreanDate = (date: Date): string => {
         const now = new Date();
@@ -29,22 +32,10 @@ export const getDateHeader = (dateString: string): string => {
         return date.toLocaleDateString('ko-KR', dateOptions);
     };
 
-    const date = createDate(dateString);
-    return date ? formatToKoreanDate(date) : "알 수 없는 날짜";
+    return formatToKoreanDate(date);
 };
 
-
 export const formatTime = (dateString: string): string => {
-    const createDate = (str: string): Date | null => {
-        try {
-            const isoLikeString = str.replace(' ', 'T');
-            const date = new Date(isoLikeString);
-            return isNaN(date.getTime()) ? null : date;
-        } catch {
-            return null;
-        }
-    };
-
     const date = createDate(dateString);
     if (!date) return "";
 
@@ -53,20 +44,23 @@ export const formatTime = (dateString: string): string => {
 };
 
 export const groupSessionsByDate = (sessions: InterviewsResponseBody[]): GroupedSession[] => {
+    const sessionsByDateHeader = sessions.reduce<Record<string, InterviewsResponseBody[]>>(
+        (acc, session) => {
+            const header = getDateHeader(session.startedAt);
+            return {
+                ...acc,
+                [header]: [...(acc[header] || []), session]
+            };
+        },
+        {}
+    );
 
-    const sessionsByDateHeader = sessions.reduce<Record<string, InterviewsResponseBody[]>>((acc, session) => {
-        const header = getDateHeader(session.startedAt);
-        return {
-            ...acc,
-            [header]: [...(acc[header] || []), session]
-        };
-    }, {});
-
-    return Object.entries(sessionsByDateHeader).map(([dateHeader, dateSessions]) => ({
-        dateHeader,
-        sessions: dateSessions.map((session, index) => ({
-            ...session,
-            displayTitle: `세션 ${index + 1}`
-        }))
-    }));
+    return Object.entries(sessionsByDateHeader)
+        .map(([dateHeader, dateSessions]) => ({
+            dateHeader,
+            sessions: dateSessions.map((session, index) => ({
+                ...session,
+                displayTitle: `세션 ${index + 1}`
+            }))
+        }));
 };
