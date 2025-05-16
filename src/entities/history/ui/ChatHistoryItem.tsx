@@ -22,7 +22,7 @@ const ChatHistoryItem = ({ title, timestamp, isActive = false, onClick }: ChatHi
                 <SidebarMenuButton
                     onClick={onClick}
                     isActive={isActive}
-                    className="flex flex-col items-start gap-0.5 h-auto py-3 pr-6 w-full"
+                    className="flex flex-col items-start gap-0.5 h-auto py-3 pr-6 w-full cursor-pointer"
                 >
                     <div className="flex-1 min-w-0 w-full">
                         <div className="font-medium text-sm whitespace-nowrap overflow-hidden text-ellipsis pr-4">

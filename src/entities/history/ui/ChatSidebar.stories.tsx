@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ChatSidebar from './ChatSidebar';
+import ChatSidebar from './ChatSidebar'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/shared/ui/sidebar';
 
 const meta: Meta<typeof ChatSidebar> = {
