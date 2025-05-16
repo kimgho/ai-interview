@@ -11,7 +11,7 @@ interface UseChatStreamResult {
     isConnected: boolean;
     error: Event | null;
 }
-export const useChatStream = ({ sessionId, message = "시작", token }: ChatStreamRequestBody): UseChatStreamResult => {
+export const useChatStream = ({ sessionId, message, token }: ChatStreamRequestBody): UseChatStreamResult => {
     const [streamMessage, setStreamMessage] = useState<string>("");
     const [isConnected, setIsConnected] = useState<boolean>(false)
     const [error, setError] = useState<Event | null>(null);
