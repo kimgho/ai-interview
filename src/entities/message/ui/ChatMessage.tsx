@@ -3,13 +3,13 @@ import { cn } from "@/shared/lib/utils"
 type SenderType = "LLM" | "USER"
 
 interface ChatMessageProps {
-    content: string
+    message: string
     sender: SenderType
-    timestamp?: string
+    createdAt?: string
     isLoading?: boolean
 }
 
-export function ChatMessage({ content, sender, timestamp }: ChatMessageProps) {
+export function ChatMessage({ message, sender, createdAt }: ChatMessageProps) {
     const isLLM = sender === "LLM"
 
     return (
@@ -21,9 +21,9 @@ export function ChatMessage({ content, sender, timestamp }: ChatMessageProps) {
                         isLLM ? "bg-muted text-foreground rounded-tl-none" : "bg-primary text-primary-foreground rounded-tr-none",
                     )}
                 >
-                    <p className="whitespace-pre-wrap break-words">{content}</p>
+                    <p className="whitespace-pre-wrap break-words">{message}</p>
                 </div>
-                {timestamp && <span className="text-xs text-muted-foreground mt-1 px-1">{timestamp}</span>}
+                {createdAt && <span className="text-xs text-muted-foreground mt-1 px-1">{createdAt}</span>}
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 export type ChatMessageType = {
     id: string
-    content: string
+    message: string
     sender: "LLM" | "USER"
-    timestamp: string
+    createdAt?: string;
+    sessionId?: number;
 }
