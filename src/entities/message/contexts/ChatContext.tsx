@@ -25,8 +25,6 @@ const WELCOME_MESSAGE: Omit<ChatMessageType, "sessionId"> = {
     createdAt: new Date().toLocaleTimeString([], { hour: "numeric", minute: "numeric" })
 };
 
-const NEW_SESSION_PATH = '/chat/new';
-
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
     const [messages, setMessages] = useState<ChatMessageType[]>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -49,21 +47,13 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
         const handleSession = async () => {
             setIsSessionLoading(true);
             try {
-                if (window.location.pathname === NEW_SESSION_PATH) {
-                    if (!sessionId) {
-                        await createNewSession();
-                    }
+                const sessionIdNumber = Number.parseInt(routeSessionId || "");
+                if (!isNaN(sessionIdNumber)) {
+                    await loadSession(sessionIdNumber);
                     return;
                 }
 
-                if (routeSessionId) {
-                    const sessionIdNumber = Number.parseInt(routeSessionId);
-                    if (!isNaN(sessionIdNumber)) {
-                        await loadSession(sessionIdNumber);
-                        return;
-                    }
-                }
-                navigate(NEW_SESSION_PATH);
+                await createNewSession();
             } finally {
                 setIsSessionLoading(false);
             }
@@ -162,9 +152,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
             setSessionId(newSessionId);
             console.log("새 인터뷰 ->", newSessionId);
 
-            if (window.location.pathname === NEW_SESSION_PATH) {
-                navigate(`/chat/${newSessionId}`);
-            }
+            navigate(`/chat/${newSessionId}`);
 
             const welcomeWithMessageId: ChatMessageType = {
                 ...WELCOME_MESSAGE,
