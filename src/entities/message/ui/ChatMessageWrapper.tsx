@@ -14,9 +14,9 @@ const ChatMessageWrapper = ({ messages, isLoading }: ChatMessageWrapperProps) =>
             {messages.map((message) => (
                 <ChatMessage
                     key={message.id}
-                    content={message.content}
+                    message={message.message}
                     sender={message.sender}
-                    timestamp={message.timestamp}
+                    createdAt={message.createdAt}
                 />
             ))}
             {isLoading && <ChatMessageLoading />}
