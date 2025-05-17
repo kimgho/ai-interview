@@ -1,5 +1,7 @@
+import { SenderType } from "@/entities/message/ui/ChatMessage";
 import ApiErrorHandler from "@/shared/lib/ApiErrorHandler"
 import axiosInstance from "@/shared/lib/axios"
+import { BaseResponse } from "@/shared/lib/baseResponse";
 import { AxiosError } from "axios"
 
 export interface InterviewsResponseBody {
@@ -10,6 +12,14 @@ export interface InterviewsResponseBody {
     intervieweeId: number;
 }
 
+export interface InterviewMessageResponseBody {
+    id: number;
+    sessionId: number;
+    message: string;
+    sender: SenderType;
+    createdAt: string;
+
+}
 /**
  * 인터뷰 세션 목록을 조회
  * @requires accessToken
@@ -18,7 +28,7 @@ export interface InterviewsResponseBody {
  */
 export const getInterviews = async (): Promise<InterviewsResponseBody[]> => {
     try {
-        const response = await axiosInstance.get<InterviewsResponseBody[]>('/interviews')
+        const { data: response } = await axiosInstance.get<BaseResponse<InterviewsResponseBody[]>>('/interviews')
         return response.data
     } catch (error) {
         throw ApiErrorHandler.handleRequestError(error as AxiosError | Error)
@@ -33,7 +43,7 @@ export const getInterviews = async (): Promise<InterviewsResponseBody[]> => {
  */
 export const postInterviews = async (): Promise<InterviewsResponseBody> => {
     try {
-        const response = await axiosInstance.post<InterviewsResponseBody>('/interviews');
+        const { data: response } = await axiosInstance.post<BaseResponse<InterviewsResponseBody>>('/interviews');
         return response.data;
     } catch (error) {
         throw ApiErrorHandler.handleRequestError(error as AxiosError | Error)
@@ -45,12 +55,12 @@ export const postInterviews = async (): Promise<InterviewsResponseBody> => {
  * 특정 세션의 메시지 기록을 조회
  * @param {number} sessionId - 조회할 세션의 ID
  * @requires accessToken
- * @returns {Promise<InterviewsResponseBody>} 세션 정보 및 메시지 기록
+ * @returns {Promise<InterviewMessageResponseBody>} 세션 정보 및 메시지 기록
  * @throws {ApiError} 요청 실패 시 에러를 throw
  */
-export const getInterviewById = async (sessionId: number): Promise<InterviewsResponseBody> => {
+export const getInterviewById = async (sessionId: number): Promise<InterviewMessageResponseBody[]> => {
     try {
-        const response = await axiosInstance.get(`/interviews/${sessionId}/messages`)
+        const { data: response } = await axiosInstance.get<BaseResponse<InterviewMessageResponseBody[]>>(`/interviews/${sessionId}/messages`)
         return response.data;
     } catch (error) {
         throw ApiErrorHandler.handleRequestError(error as AxiosError | Error);
