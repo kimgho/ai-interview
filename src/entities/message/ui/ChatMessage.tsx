@@ -1,6 +1,6 @@
 import { cn } from "@/shared/lib/utils"
 
-type SenderType = "LLM" | "USER"
+export type SenderType = "LLM" | "USER"
 
 interface ChatMessageProps {
     message: string
@@ -9,7 +9,7 @@ interface ChatMessageProps {
     isLoading?: boolean
 }
 
-export function ChatMessage({ message, sender, createdAt }: ChatMessageProps) {
+export const ChatMessage = ({ message, sender, createdAt }: ChatMessageProps) => {
     const isLLM = sender === "LLM"
 
     return (

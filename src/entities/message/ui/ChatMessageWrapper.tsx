@@ -1,4 +1,4 @@
-import { ChatMessageType } from "@/entities/message/types/ChatMessageProps"
+import { ChatMessageType } from "@/entities/message/types/chat-message-props"
 import { ChatMessage } from "./ChatMessage"
 import { ChatMessageLoading } from "./ChatMessageLoading"
 
@@ -6,7 +6,6 @@ interface ChatMessageWrapperProps {
     messages: ChatMessageType[]
     isLoading: boolean
 }
-
 
 const ChatMessageWrapper = ({ messages, isLoading }: ChatMessageWrapperProps) => {
     return (
