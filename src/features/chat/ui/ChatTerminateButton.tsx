@@ -18,9 +18,15 @@ const ChatTerminateButton = () => {
     const { id: routeSessionId } = useParams<{ id: string }>();
     const [isOpen, setIsOpen] = useState(false)
 
-    const handleTerminateInterview = (SessionId: number) => {
-        postTerminateInterview(SessionId);
-        setIsOpen(false);
+    const handleTerminateInterview = async (sessionId: number) => {
+        try {
+            postTerminateInterview(sessionId);
+            setIsOpen(false);
+        } catch (error) {
+            console.error("인터뷰 종료 실패", error);
+            setIsOpen(false);
+        }
+
     }
 
     return (
