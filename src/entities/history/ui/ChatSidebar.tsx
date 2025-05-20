@@ -84,6 +84,7 @@ const ChatSidebar = () => {
                                                     timestamp={formatTime(interview.startedAt)}
                                                     isActive={activeSession === interview.id}
                                                     onClick={() => handleSelectInterview(interview.id, navigate)}
+                                                    endedAt={interview.endedAt}
                                                 />
                                             ))}
                                         </CollapsibleContent>
