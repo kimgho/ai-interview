@@ -10,11 +10,18 @@ type Story = StoryObj<typeof ChatInput>;
 
 export const Default: Story = {
     args: {
+        isInterviewEnded: false
     },
 };
 
 export const Loading: Story = {
     args: {
-        isLoading: true
+        isLoading: true,
+        isInterviewEnded: false
+    }
+}
+export const Disable: Story = {
+    args: {
+        isInterviewEnded: true
     }
 }
