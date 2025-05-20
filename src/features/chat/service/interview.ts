@@ -53,14 +53,29 @@ export const postInterviews = async (): Promise<InterviewsResponseBody> => {
 
 /**
  * 특정 세션의 메시지 기록을 조회
- * @param {number} sessionId - 조회할 세션의 ID
+ * @param {number} SessionId - 조회할 세션의 ID
  * @requires accessToken
  * @returns {Promise<InterviewMessageResponseBody>} 세션 정보 및 메시지 기록
  * @throws {ApiError} 요청 실패 시 에러를 throw
  */
-export const getInterviewById = async (sessionId: number): Promise<InterviewMessageResponseBody[]> => {
+export const getInterviewById = async (SessionId: number): Promise<InterviewMessageResponseBody[]> => {
     try {
-        const { data: response } = await axiosInstance.get<BaseResponse<InterviewMessageResponseBody[]>>(`/interviews/${sessionId}/messages`)
+        const { data: response } = await axiosInstance.get<BaseResponse<InterviewMessageResponseBody[]>>(`/interviews/${SessionId}/messages`)
+        return response.data;
+    } catch (error) {
+        throw ApiErrorHandler.handleRequestError(error as AxiosError | Error);
+    }
+}
+
+/**
+ * 특정 세션을 종료
+ * @param {number} SessionId
+ * @requires accessToken
+ * @throws {ApiError}
+ */
+export const postTerminateInterview = async (SessionId: number) => {
+    try {
+        const { data: response } = await axiosInstance.post(`/interviews/${SessionId}/complete`);
         return response.data;
     } catch (error) {
         throw ApiErrorHandler.handleRequestError(error as AxiosError | Error);
