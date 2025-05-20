@@ -66,3 +66,18 @@ export const getInterviewById = async (sessionId: number): Promise<InterviewMess
         throw ApiErrorHandler.handleRequestError(error as AxiosError | Error);
     }
 }
+
+/**
+ * 특정 세션을 종료
+ * @param {number} sessionId
+ * @requires accessToken
+ * @throws {ApiError}
+ */
+export const postTerminateInterview = async (sessionId: number) => {
+    try {
+        const { data: response } = await axiosInstance.post(`/interviews/${sessionId}/complete`);
+        return response.data;
+    } catch (error) {
+        throw ApiErrorHandler.handleRequestError(error as AxiosError | Error);
+    }
+}

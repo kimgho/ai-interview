@@ -6,18 +6,19 @@ import { useState } from "react"
 interface ChatInputProps {
     onSendMessage: (message: string) => void;
     isLoading: boolean;
+    isInterviewEnded: boolean
 }
 
 
-const ChatInput = ({ isLoading = false, onSendMessage }: ChatInputProps) => {
+const ChatInput = ({ isLoading = false, onSendMessage, isInterviewEnded }: ChatInputProps) => {
     const [message, setMessage] = useState("")
+    const isDisable = isInterviewEnded || isLoading || !message.trim();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (message.trim() && !isLoading) {
-            onSendMessage(message);
-            setMessage("");
-        }
+        if (isInterviewEnded || isLoading || !message.trim()) return;
+        onSendMessage(message);
+        setMessage("");
     }
 
     return (
@@ -25,10 +26,11 @@ const ChatInput = ({ isLoading = false, onSendMessage }: ChatInputProps) => {
             <Input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="메시지를 입력하세요."
+                placeholder={isInterviewEnded ? "종료된 인터뷰는 진행이 불가능합니다." : "답변을 입력해주세요"}
+                disabled={isDisable}
                 className="flex-1"
             />
-            <Button type="submit" size="icon" disabled={isLoading || !message.trim()}>
+            <Button type="submit" size="icon" disabled={isDisable}>
                 {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <SendIcon className="h-4 w-4" />}
                 <span className="sr-only">전송</span>
             </Button>
