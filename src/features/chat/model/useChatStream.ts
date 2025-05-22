@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { flushSync } from "react-dom";
 
 interface ChatStreamRequestBody {
     sessionId: number;
@@ -62,12 +63,18 @@ export const useChatStream = ({ sessionId, message, token }: ChatStreamRequestBo
                 const parsedData = JSON.parse(event.data);
 
                 if (parsedData.event && (parsedData.event === 'progress' || parsedData.event === 'complete' || parsedData.event === 'heartbeat')) {
-                    setStreamMessage({ event: parsedData.event, data: parsedData.data });
+                    const newMessage: StreamData = { event: parsedData.event, data: parsedData.data };
 
                     if (parsedData.event === 'complete') {
+                        flushSync(() => {
+                            setStreamMessage(newMessage);
+                        })
+
                         eventSource.close();
                         setIsConnected(false);
                         eventSourceRef.current = null;
+                    } else {
+                        setStreamMessage(newMessage);
                     }
                 } else {
                     console.warn("onmessage: Unexpected data format or missing event field in data:", parsedData);
